@@ -74,7 +74,8 @@ public class PhoneBookDAOlmpl implements PhoneBookDAO {
 		
 		List<PhoneBookVO> list = new ArrayList<>();
 		
-		String sql = "SELECT id, name, hp, tel FROM phone_book ";
+		String sql = "SELECT id, name, hp, tel FROM phone_book " + 
+							" WHERE name LIKE ?";
 		
 		try {
 			conn = getConnection();
@@ -150,7 +151,7 @@ public class PhoneBookDAOlmpl implements PhoneBookDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "INSERT INTO phone_book VALUES(seq_id.NEXTVAL, ?, ?, ?)";
+			String sql = "INSERT INTO phone_book VALUES(SEQ_PHONE_BOOK_PK.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getHp());
